@@ -28,11 +28,36 @@ app.config(function($routeProvider) {
 // for everything
 //
 app.controller('MainController', function($rootScope, $scope){
+	//
+	// 'Forms' screen
+	//  
+	$scope.rememberMe = true;
+	$scope.email = 'me@example.com';
 
+	$scope.login = function() {
+		alert('You submitted the login form');
+	};
+
+	// Fake text i used here and there.
+	$scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
+
+	// Needed for the loading screen
+	$rootScope.$on('$routeChangeStart', function(){
+	$rootScope.loading = true;
+	});
+
+	$rootScope.$on('$routeChangeSuccess', function(){
+	$rootScope.loading = false;
+	});
 	var scrollItems = [];
 
 	for (var i=1; i<=100; i++) {
 	scrollItems.push('Item ' + i);
 	}
 	$scope.scrollItems = scrollItems;
+	$scope.bottomReached = function() {
+    	/* global alert: false; */
+    	alert('Congrats you scrolled to the end of the list!');
+  	};
+
 });
