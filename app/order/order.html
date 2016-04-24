@@ -1,0 +1,58 @@
+<div ui-content-for="title">
+    <span>创建订单</span>
+</div>
+
+<div class="scrollable">
+    <div class="scrollable-content section">
+        <form role="form">
+            <fieldset>
+                <legend>订单详情</legend>
+                <div class="form-group">
+                    <label>描述</label>
+                    <input type="text"
+                           ng-model="orderInfo.description"
+                           class="form-control"
+                           required
+                           placeholder="订单描述">
+                </div>
+                <div class="form-group">
+                    <label>起始地址</label>
+                    <select  ng-model="orderInfo.orgAddress" class="form-control"
+                            ng-options="orgAddress.addressDesc+' （'+orgAddress.phoneNo+'）' for orgAddress in orgAddresses">
+                        <option value="">请选择起始地址</option>
+                    </select>
+                </div>
+                <legend>目的地址</legend>
+                <div class="form-group">
+                    <label>称呼</label>
+                    <input type="text"
+                           ng-model="orderInfo.destAddress.calledName"
+                           class="form-control"
+                           required
+                           placeholder="先生/女士">
+                </div>
+                <div class="form-group">
+                    <label>联系方式</label>
+                    <input type="text"
+                           ng-model="orderInfo.destAddress.phoneNo"
+                           class="form-control"
+                           required
+                           placeholder="电话号码">
+                </div>
+                <div class="form-group">
+                    <label>地址</label>
+                    <input type="text"
+                           ng-model="orderInfo.destAddress.addressDesc"
+                           class="form-control"
+                           required
+                           placeholder="地址">
+                </div>
+
+            </fieldset>
+            <hr>
+
+            <button class="btn btn-success btn-block" ng-click="addOrder(orderInfo)" >创建</button>
+            <button class="btn btn-warning btn-block" ng-click="clear(orderInfo)">取消</button>
+        </form>
+    </div>
+</div>

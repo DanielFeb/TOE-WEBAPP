@@ -1,0 +1,32 @@
+<div ui-content-for="title">
+    <span>个人信息</span>
+</div>
+
+<div class="scrollable">
+    <div class="scrollable-content section">
+        <form role="form">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label">用户名:</label>
+                    <div class="controls">
+                        <p id="calledName" ng-bind="selfInfo.calledName"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">信用度:</label>
+                    <div class="controls">
+                        <p id="credit" ng-bind="selfInfo.credit"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">账户余额:</label>
+                    <div class="controls">
+                        <p id="money" ng-bind="selfInfo.money"></p>
+                    </div>
+                </div>
+            <button class="btn btn-primary btn-block">
+                修改密码
+            </button>
+        </form>
+    </div>
+</div>

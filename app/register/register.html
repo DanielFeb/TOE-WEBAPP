@@ -1,0 +1,41 @@
+<div ui-content-for="title">
+  <span>注册</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content section">
+    <form role="form" ng-submit='register(registerInfo)'>
+      <fieldset>
+        <div class="form-group has-success has-feedback">
+          <label>用户名</label>
+          <input type="text"
+                 ng-model="registerInfo.username"
+                 class="form-control"
+                 required
+                 placeholder="请输入用户名">
+        </div>
+
+        <div class="form-group">
+          <label>密码</label>
+          <input type="password"
+                 ng-model="registerInfo.password"
+                 class="form-control"
+                 required
+                 placeholder="请输入密码">
+        </div>
+        <div class="form-group">
+            <label>注册角色</label>
+            <select id="inputRole" ng-model="registerInfo.currentRole" class="form-control" ng-options="role.roleName for role in roleList">
+              <option value="">请选择角色</option>
+            </select>
+        </div>
+      </fieldset>
+      <hr>
+
+      <button class="btn btn-primary btn-block">
+        SIGN UP
+      </button>
+    </form>
+  </div>
+</div>
+
