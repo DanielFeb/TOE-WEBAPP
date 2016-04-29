@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2016/4/16.
  */
-angular.module('tm.pagination', []).directive('tmPagination',[function(){
+angular.module('tm.pagination', [])
+.directive('tmPagination',[function(){
     return {
         restrict: 'EA',
         template: '<div class="page-list">' +

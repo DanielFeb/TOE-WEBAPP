@@ -5,14 +5,13 @@
 'use strict';
 //.constant("requestUrl","mockdata/tickeHistory.json")
 angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDetail'])
-.controller('orderHistoryCtrl', [
-    '$scope',
-    '$location',
-    'userService',
-    'statusCodeConvertService',
-    'orderService',
-    'BASIC_EVENTS',
-    function($scope,$location,userService,statusCodeConvertService,orderService,BASIC_EVENTS) {
+.controller('orderHistoryCtrl', ['$scope', '$location', 'userService', 'orderService', 'BASIC_EVENTS','authService',
+    function($scope,$location,userService,orderService,BASIC_EVENTS,authService) {
+    $scope.pageName = 'orderHistory';
+    if(!authService.checkAuthorizationToLoad($scope.pageName)){
+        return;
+    }
+
     $scope.getOrderHistoryPage = function () {
         var postData = {
             pageNo: $scope.paginationConf.currentPage,
@@ -69,7 +68,7 @@ angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDeta
     };
 
     $scope.status = function(item){
-        return  statusCodeConvertService.codeConvert(item.status);
+        return  orderService.codeConvert(item.status);
     };
 
     $scope.address =function(item){

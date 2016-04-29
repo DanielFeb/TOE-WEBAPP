@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('myApp.order', ['ngRoute'])
-.controller('orderCtrl', ["$scope","$location","addressService","orderService",function($scope,$location,addressService,orderService) {
+.controller('orderCtrl', ["$scope","$location","addressService","orderService",'authService',
+    function($scope,$location,addressService,orderService,authService) {
+
+    $scope.pageName = 'order';
+    if(!authService.checkAuthorizationToLoad($scope.pageName)){
+        return;
+    }
+
     $scope.orgAddresses = null;
     addressService.fetchOrgAddresses()
         .success(function(res){

@@ -4,13 +4,12 @@
 'use strict';
 //.constant("requestUrl","mockdata/tickeHistory.json")
 angular.module('myApp.orderNearby', ['ngRoute'])
-.controller('orderNearbyCtrl',
-    ['$scope',
-        '$location',
-        'orderService',
-        'statusCodeConvertService',
-        'BASIC_EVENTS',
-        function($scope,$location,orderService,statusCodeConvertService,BASIC_EVENTS) {
+.controller('orderNearbyCtrl', ['$scope', '$location', 'orderService', 'BASIC_EVENTS','authService',
+    function($scope,$location,orderService,BASIC_EVENTS,authService) {
+    $scope.pageName = 'orderNearby';
+    if(!authService.checkAuthorizationToLoad($scope.pageName)){
+        return;
+    }
     $scope.orderInfo ={
         description:''
     };
@@ -50,7 +49,7 @@ angular.module('myApp.orderNearby', ['ngRoute'])
             })
     };
     $scope.status = function(item){
-        return statusCodeConvertService.codeConvert(item.status);
+        return orderService.codeConvert(item.status);
     };
 
     $scope.initialDestination = function(item){

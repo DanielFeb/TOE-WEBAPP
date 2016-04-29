@@ -5,10 +5,20 @@
 
 /* orderService */
 
-var services = angular.module('myApp.orderService', []).
-    value('version', '1.0');
-
-services.service('orderService', ['$http','urlHeader',function ($http, urlHeader) {
+angular.module('myApp.orderService', [])
+.service('orderService', ['$http','urlHeader',function ($http, urlHeader) {
+    this.codeConvert = function(statusCode){
+        switch(statusCode){
+            case 0:
+                return '新订单';
+            case 1:
+                return '已接单';
+            case 2:
+                return '已完成';
+            default:
+                return '已取消';
+        }
+    };
     this.assignOrder = function(order){
         return $http({
             url:urlHeader+'order/assignment',

@@ -4,11 +4,8 @@
 'use strict';
 
 /* userService */
-
-var services = angular.module('myApp.userService', []).
-    value('version', '1.0');
-
-services.service('userService', ['$http','urlHeader',function ($http,urlHeader) {
+angular.module('myApp.userService', [])
+.service('userService', ['$http','urlHeader',function ($http,urlHeader) {
     this.user = {
         userId:0,
         username:'',

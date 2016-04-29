@@ -5,10 +5,8 @@
 
 /* addressService */
 
-var services = angular.module('myApp.addressService', []).
-    value('version', '1.0');
-
-services.service('addressService', ['$http','urlHeader',function ($http,urlHeader){
+angular.module('myApp.addressService', [])
+.service('addressService', ['$http','urlHeader',function ($http,urlHeader){
     this.maxAddressCount = 5;
 
     this.orgAddresses = [];

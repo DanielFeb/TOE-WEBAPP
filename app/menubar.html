@@ -3,12 +3,14 @@
   <div class="scrollable-content">
     <div class="list-group" ui-turn-off='uiSidebarLeft'>
       <a class="list-group-item" href="#/">主页 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/login" ui-if="true">登录 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/register" ui-if="true">注册 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/orderNearby" ui-if="true">附近订单 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/orderHistory" ui-if="true">历史订单 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/addressInfo" ui-if="true">地址管理 <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/basicInfo" ui-if="true">个人信息 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/login" ng-show="!isUserValid">登录 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/register" ng-show="!isUserValid">注册 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/order" ng-show="showOwnerMenu">创建订单 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/orderNearby" ng-show="showDelivererMenu">附近订单 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/orderHistory" ng-show="isUserValid">历史订单 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/addressInfo" ng-show="showOwnerMenu">地址管理 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/basicInfo" ng-show="isUserValid">个人信息 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" ng-click="logout()" ng-show="isUserValid">注销 <i class="fa fa-chevron-right pull-right"></i></a>
     </div>
   </div>
 </div>

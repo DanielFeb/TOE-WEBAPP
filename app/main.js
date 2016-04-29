@@ -13,16 +13,18 @@ var app = angular.module('myApp',[
 	'myApp.userService',
 	'myApp.addressService',
 	'myApp.orderService',
-	'myApp.statusCodeConvertService',
-
+	'myApp.authService'
 	]);
 app.run(function($transform) {
   window.$transform = $transform;
 });
 
 app.config(function($routeProvider) {
-	$routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
 	$routeProvider.
+		when('/', {
+			templateUrl: 'home.html',
+			reloadOnSearch: false
+		}).
 		when('/login', {
 			templateUrl: 'login/login.html',
 			controller: 'loginCtrl',
@@ -77,18 +79,20 @@ app.constant('BASIC_EVENTS', {
 	close:'basic-close'
 });
 
-app.controller('MainController', function($rootScope, $scope, AUTH_EVENTS){
-	$scope.bottomReached = function() {
-    	/* global alert: false; */
-    	alert('Congrats you scrolled to the end of the list!');
-  	};
-
+app.controller('MainController', function($rootScope, $scope, $location, AUTH_EVENTS, userService,authService){
 	$scope.isUserValid = false;
 	$scope.showOwnerMenu = false;
 	$scope.showDelivererMenu = false;
+	$scope.username = '';
+
+	$scope.directToLoginPage = function(){
+		//direct to login page
+		$location.path('/login').replace();
+	};
 
 	$scope.onUserChangeHandler = function(){
 		$scope.isUserValid = userService.isUserValid();
+		$scope.username = userService.user.username;
 		$scope.showOwnerMenu = $scope.isUserValid && userService.isUserOwner();
 		$scope.showDelivererMenu = $scope.isUserValid && userService.isUserDeliverer();
 	};
@@ -96,6 +100,7 @@ app.controller('MainController', function($rootScope, $scope, AUTH_EVENTS){
 	$scope.$on(AUTH_EVENTS.loginSuccess, function() {
 		$scope.onUserChangeHandler();
 	});
+
 	$scope.logout = function() {
 		userService.logout();
 		$location.path('/login').replace();
