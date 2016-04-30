@@ -8672,7 +8672,7 @@ a.list-group-item .icon.pull-right {
 
 .scrollable {
   position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
   top: 0;
   bottom: 0;

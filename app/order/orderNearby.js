@@ -10,9 +10,16 @@ angular.module('myApp.orderNearby', ['ngRoute'])
     if(!authService.checkAuthorizationToLoad($scope.pageName)){
         return;
     }
-    $scope.orderInfo ={
-        description:''
+
+    //配置分页基本参数
+    $scope.paginationConf = {
+        currentPage: 1,
+        itemsPerPage: 20,
+        totalItems: 0
     };
+
+    $scope.currentOrder = null;
+
     $scope.getOrderNearByPage = function () {
 
         var postData = {
@@ -29,40 +36,26 @@ angular.module('myApp.orderNearby', ['ngRoute'])
         $scope.getOrderNearByPage();
     };
 
-    //配置分页基本参数
-    $scope.paginationConf = {
-        currentPage: 1,
-        itemsPerPage: 5
-    };
-    $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage',  $scope.getOrderNearByPage);
-
-
-    $scope.checkOrder = function(item){
-        $scope.$broadcast(BASIC_EVENTS.load,item);
+    $scope.load = function(){
+        $scope.reload();
     };
 
-    $scope.assignOrder = function (item){
-        orderService.assignOrder(item)
-            .success(function(){
-                $scope.reload();
-                alert("接单成功");
-            })
-    };
-    $scope.status = function(item){
-        return orderService.codeConvert(item.status);
+    $scope.bottomReached = function(){
+        alert("到底了！");
     };
 
-    $scope.initialDestination = function(item){
-        return item.orgAddress.addressDesc;
+    $scope.select = function(item){
+        $scope.currentOrder = item;
     };
 
-    $scope.aimDestination = function(item){
-        return item.destAddress.addressDesc;
+    $scope.$on(BASIC_EVENTS.REQUEST_LOAD_DATA,function(event){
+        $scope.$broadcast(BASIC_EVENTS.RESPONSE_LOAD_DATA, $scope.currentOrder)
+    });
+
+    $scope.showAddBtn = function(item){
+        return userService.isUserOwner();
     };
 
-    $scope.startTime = function(item){
-        var newDate = new Date();
-        newDate.setTime(item.createTime );
-        return  newDate.toLocaleString();
-    };
+    $scope.load();
+
 }]);

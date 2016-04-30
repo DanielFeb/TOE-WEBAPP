@@ -7,6 +7,12 @@
 
 angular.module('myApp.orderService', [])
 .service('orderService', ['$http','urlHeader',function ($http, urlHeader) {
+    this.statusCode = {
+        NEW:0,
+        ASSIGNED:1,
+        FINISHED:2,
+        DELETED:10
+    };
     this.codeConvert = function(statusCode){
         switch(statusCode){
             case 0:
@@ -65,5 +71,5 @@ angular.module('myApp.orderService', [])
                 "destAddress":order.destAddress
             }
         })
-    }
+    };
 }]);

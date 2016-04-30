@@ -39,6 +39,7 @@ angular.module('myApp.order', ['ngRoute'])
         orderService.addOrder(order)
             .success(function(){
                 $location.path('/orderHistory').replace();
+                alert("创建成功！");
             }).error(function(res){
                 alert("创建失败：" + res.message);
             });

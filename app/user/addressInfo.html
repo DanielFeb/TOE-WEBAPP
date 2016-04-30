@@ -5,11 +5,11 @@
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom='bottomReached()' >
         <div class="list-group">
-            <a ng-repeat="address in addressInfo" class="list-group-item">
-                {{address.calledName + '| ' + address.phoneNo + '| ' + address.addressDesc}} <i class="fa fa-chevron-right pull-right"></i>
-            </a>
             <a class="list-group-item" ng-show="showAddBtn">
-                创建一个新地址<i class="fa fa-plus pull-right"></i>
+                创建一个新地址<i class="fa fa-plus pull-left"></i>
+            </a>
+            <a ng-repeat="address in addressInfo" class="list-group-item">
+                {{address.calledName + ' | ' + address.phoneNo + ' | ' + address.addressDesc}} <i class="fa fa-chevron-right pull-right"></i>
             </a>
         </div>
     </div>

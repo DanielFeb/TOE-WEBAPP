@@ -12,6 +12,15 @@ angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDeta
         return;
     }
 
+    //配置分页基本参数
+    $scope.paginationConf = {
+        currentPage: 1,
+        itemsPerPage: 20,
+        totalItems: 0
+    };
+
+    $scope.currentOrder = null;
+
     $scope.getOrderHistoryPage = function () {
         var postData = {
             pageNo: $scope.paginationConf.currentPage,
@@ -26,55 +35,24 @@ angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDeta
         $scope.getOrderHistoryPage();
     };
 
-    //配置分页基本参数
-    $scope.paginationConf = {
-        currentPage: 1,
-        itemsPerPage: 5
-    };
-    $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', $scope.getOrderHistoryPage);
-
-    $scope.checkOrder = function(item){
-        $scope.$broadcast(BASIC_EVENTS.load,item);
+    $scope.load = function(){
+        $scope.reload();
     };
 
-    $scope.deleteOrder = function (item){
-        orderService.deleteOrder(item)
-            .success(function(){
-                $scope.reload();
-                alert("取消成功！");
-            }).error(function(res) {
-                alert("操作失败："+res.message);
-            });
+    $scope.bottomReached = function(){
+        alert("到底了！");
     };
 
-    $scope.destination = function(item){
-        return item.destAddress.addressDesc;
+    $scope.select = function(item){
+        $scope.currentOrder = item;
     };
 
-    $scope.startTime = function(item){
-        var newDate = new Date();
-        newDate.setTime(item.createTime );
-        return  newDate.toLocaleString();
-   };
+    $scope.$on(BASIC_EVENTS.REQUEST_LOAD_DATA,function(event){
+        $scope.$broadcast(BASIC_EVENTS.RESPONSE_LOAD_DATA, $scope.currentOrder)
+    });
 
-    $scope.finishOrder = function(item){
-        orderService.closeOrder(item)
-            .success(function(){
-                $scope.reload();
-                alert("订单完成！");
-            }).error(function(res) {
-                alert("操作失败："+res.message);
-            });
+    $scope.showAddBtn = function(){
+        return userService.isUserOwner();
     };
-
-    $scope.status = function(item){
-        return  orderService.codeConvert(item.status);
-    };
-
-    $scope.address =function(item){
-        return item.orgAddress.addressDesc;
-    };
-    $scope.showFinishBtn = function(item){
-        return userService.isUserDeliverer() && item.status == 1;
-    }
+    $scope.load();
 }]);

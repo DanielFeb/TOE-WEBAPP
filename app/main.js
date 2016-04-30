@@ -65,7 +65,7 @@ app.config(function($routeProvider) {
 		});
 });
 
-app.constant('urlHeader','http://192.168.1.5:7777/');
+app.constant('urlHeader','http://192.168.1.3:7777/');
 app.constant('AUTH_EVENTS', {
 	loginSuccess: 'auth-login-success',
 	loginFailed: 'auth-login-failed',
@@ -75,8 +75,8 @@ app.constant('AUTH_EVENTS', {
 	notAuthorized: 'auth-not-authorized'
 });
 app.constant('BASIC_EVENTS', {
-	load:'basic-load',
-	close:'basic-close'
+	REQUEST_LOAD_DATA:'basic-request-load-data',
+	RESPONSE_LOAD_DATA:'basic-response-load-data'
 });
 
 app.controller('MainController', function($rootScope, $scope, $location, AUTH_EVENTS, userService,authService){

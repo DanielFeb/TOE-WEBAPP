@@ -1,65 +1,91 @@
-<div class="modal-dialog" ng-controller="orderDetailCtrl">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close"
-                    data-dismiss="modal" aria-hidden="true">
-                &times;
-            </button>
-            <h4 class="modal-title" id="myModalLabel">
-                <span>单号：{{orderDetail.orderId}} {{orderDetail.description}}</span>
-            </h4>
+<div class="modal" ui-if="orderDetailModal" ui-state="orderDetailModal" ng-controller="orderDetailCtrl">
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog scrollable">
+        <div class="modal-content scrollable-content">
+            <div class="modal-header">
+                <button class="close"
+                        ui-turn-off="orderDetailModal">&times;</button>
+                <h4 class="modal-title">单号：{{orderDetail.orderId}} </h4>
+                <button ui-turn-off="orderDetailModal" ng-click="assignOrder()" ng-show="showAssignBtn()" class="btn btn-info btn-block">接单</button>
+                <button ui-turn-off="orderDetailModal" ng-click="finishOrder()" ng-show="showFinishBtn()" class="btn btn-success btn-block">完成订单</button>
+                <button ui-turn-off="orderDetailModal" ng-click="deleteOrder()" ng-show="showCancelBtn()" class="btn btn-danger btn-block">取消订单</button>
+            </div>
+            <div class="modal-body" >
+                <form role="form">
+                    <fieldset>
+                        <legend>订单详情：</legend>
+                        <div class="form-group">
+                            <label>描述信息：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.description"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>费用：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.payment"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <legend>起始地址：</legend>
+                        <div class="form-group">
+                            <label>称呼：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.orgAddress.calledName"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>联系方式：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.orgAddress.phoneNo"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>地址：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.orgAddress.addressDesc"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <legend>目的地址：</legend>
+                        <div class="form-group">
+                            <label>称呼：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.destAddress.calledName"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>联系方式：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.destAddress.phoneNo"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>地址：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.destAddress.addressDesc"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ui-turn-off="orderDetailModal" class="btn btn-default btn-block">关闭</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <form class="form-horizontal" >
-                <div class="control-group">
-                    <label class="control-label" for="payment" >费用：</label>
-                    <div class="controls">
-                        <input type="text" id="payment" ng-model="orderDetail.payment" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="orgCalledName">发货人称呼：</label>
-                    <div class="controls">
-                        <input type="text" id="orgCalledName" ng-model="orderDetail.orgAddress.calledName" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="orgPhoneNo">联系方式：</label>
-                    <div class="controls">
-                        <input type="text" id="orgPhoneNo" ng-model="orderDetail.orgAddress.phoneNo" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="orgAddressDesc">地址：</label>
-                    <div class="controls">
-                        <input type="text" id="orgAddressDesc" ng-model="orderDetail.orgAddress.addressDesc" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="destCalledName">收货人称呼：</label>
-                    <div class="controls">
-                        <input type="text" id="destCalledName"  ng-model="orderDetail.destAddress.calledName" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="destPhoneNo">联系方式：</label>
-                    <div class="controls">
-                        <input type="text" id="destPhoneNo" ng-model="orderDetail.destAddress.phoneNo" ng-readonly="readOnly">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="destAddressDesc">地址：</label>
-                    <div class="controls">
-                        <input type="text" id="destAddressDesc" ng-model="orderDetail.destAddress.addressDesc" ng-readonly="readOnly">
-                    </div>
-                </div>
-
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default"
-                    data-dismiss="modal">关闭
-            </button>
-        </div>
-    </div><!-- /.modal-content -->
+    </div>
 </div>
