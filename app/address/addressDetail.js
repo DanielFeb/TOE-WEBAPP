@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module("address.addressDetail",[])
-.controller("addressDetailCtrl",['$scope','BASIC_EVENTS',function($scope,BASIC_EVENTS){
+.controller("addressDetailCtrl",['$scope','BASIC_EVENTS','addressService',function($scope,BASIC_EVENTS,addressService){
     $scope.addressDetail = {
         addressId:0,
         calledName:'',
@@ -13,64 +13,47 @@ angular.module("address.addressDetail",[])
         longitude:0,
         latitude:0
     };
-    $scope.save = function(){
-        saveCallback(addressDetail);
-    };
-    $scope.$on(BASIC_EVENTS.load,function(event,initData){
-        $scope.addressDetail = initData.address;
-        $scope.saveCallback = initData.saveFunc;
+    $scope.isOldAddress =  false;
+
+    $scope.$on(BASIC_EVENTS.RESPONSE_LOAD_DATA,function(event,initData){
+        $scope.addressDetail = initData;
+        if($scope.addressDetail != undefined && $scope.addressDetail.addressId != undefined && $scope.addressDetail.addressId > 0){
+            $scope.isOldAddress = true;
+        } else {
+            $scope.isOldAddress = false;
+        }
     });
-    $scope.loadMap = function() {
-        function G(id) {
-            return document.getElementById(id);
-        }
+    $scope.$emit(BASIC_EVENTS.REQUEST_LOAD_DATA);
 
-        var map = new BMap.Map("map");
-        map.centerAndZoom("上海", 12);                   // 初始化地图,设置城市和地图级别。
 
-        var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
-            {
-                "input": "searchKeyInput"
-                , "location": map
+    $scope.modifyAddress = function(){
+        addressService.modifyAddress($scope.addressDetail)
+            .success(function(){
+                $scope.reLoad();
+                alert('修改成功！')
+            }).error(function(res){
+                $scope.reLoad();
+                alert('修改失败:'+ res.message);
             });
-        ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
-            var str = "";
-            var _value = e.fromitem.value;
-            var value = "";
-            if (e.fromitem.index > -1) {
-                value = _value.province + _value.city + _value.district + _value.street + _value.business;
-            }
-            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-
-            value = "";
-            if (e.toitem.index > -1) {
-                _value = e.toitem.value;
-                value = _value.province + _value.city + _value.district + _value.street + _value.business;
-            }
-            str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-            G("searchResultPanel").innerHTML = str;
-        });
-
-        var myValue;
-        ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
-            var _value = e.item.value;
-            myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-            G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-            setPlace();
-        });
-
-        function setPlace() {
-            map.clearOverlays();    //清除地图上所有覆盖物
-            function myFun() {
-                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-                map.centerAndZoom(pp, 18);
-                map.addOverlay(new BMap.Marker(pp));    //添加标注
-            }
-
-            var local = new BMap.LocalSearch(map, { //智能搜索
-                onSearchComplete: myFun
+    };
+    $scope.addAddress = function(){
+        addressService.addAddress($scope.addressDetail)
+            .success(function(){
+                $scope.reLoad();
+                alert('新增成功！')
+            }).error(function(res){
+                $scope.reLoad();
+                alert('新增失败:'+ res.message);
             });
-            local.search(myValue);
-        }
+    };
+    $scope.deleteAddress = function(){
+        addressService.deleteAddress($scope.addressDetail)
+            .success(function(){
+                $scope.reLoad();
+                alert('删除成功！')
+            }).error(function(res){
+                $scope.reLoad();
+                alert('删除失败:'+ res.message);
+            });
     };
 }]);

@@ -11,49 +11,16 @@ angular.module('myApp.addressInfo', ['ngRoute','address.addressDetail'])
     if(!authService.checkAuthorizationToLoad($scope.pageName)){
         return;
     }
+    $scope.currentAddress = null;
 
-    $scope.addressInfo = [];
-    $scope.showAddBtn = true;
+    $scope.orgAddresses = [];
 
-    $scope.modifyAddress = function(address){
-        $scope.$broadcast(BASIC_EVENTS.load,{
-            address:address,
-            saveFunc: function(address){
-                addressService.modifyAddress(address)
-                    .success(function(){
-                        $scope.reLoad();
-                        alert('修改成功！')
-                    }).error(function(res){
-                        $scope.reLoad();
-                        alert('修改失败:'+ res.message);
-                    });
-            }
-        });
-    };
-    $scope.addAddress = function(address){
-        $scope.$broadcast(BASIC_EVENTS.load,{
-            address:address,
-            saveFunc: function(address){
-                addressService.addAddress(address)
-                    .success(function(){
-                        $scope.reLoad();
-                        alert('新增成功！')
-                    }).error(function(res){
-                        $scope.reLoad();
-                        alert('新增失败:'+ res.message);
-                    });
-            }
-        });
-    };
-    $scope.deleteAddress = function(address){
-        addressService.deleteAddress(address)
-            .success(function(){
-                $scope.reLoad();
-                alert('删除成功！')
-            }).error(function(res){
-                $scope.reLoad();
-                alert('删除失败:'+ res.message);
-            });
+    $scope.$on(BASIC_EVENTS.REQUEST_LOAD_DATA,function(event){
+        $scope.$broadcast(BASIC_EVENTS.RESPONSE_LOAD_DATA, $scope.currentAddress)
+    });
+
+    $scope.select = function(address){
+        $scope.currentAddress = address;
     };
 
     //pageload
@@ -61,7 +28,7 @@ angular.module('myApp.addressInfo', ['ngRoute','address.addressDetail'])
         addressService.fetchOrgAddresses()
             .success(
                 function(){
-                    $scope.addressInfo = addressService.orgAddresses;
+                    $scope.orgAddresses = addressService.orgAddresses;
                     $scope.showAddBtn  = !addressService.isOrgAddressesFull();
                 }
             ).error(function(res){

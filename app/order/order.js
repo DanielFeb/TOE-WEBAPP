@@ -35,13 +35,30 @@ angular.module('myApp.order', ['ngRoute'])
             latitude:0
         }
     };
-    $scope.addOrder = function(order){
-        orderService.addOrder(order)
+    $scope.addOrder = function(){
+        orderService.addOrder($scope.orderInfo)
             .success(function(){
                 $location.path('/orderHistory').replace();
                 alert("创建成功！");
             }).error(function(res){
                 alert("创建失败：" + res.message);
             });
+    };
+
+    $scope.clear = function(){
+        $scope.orderInfo = {
+            description:'',
+            payment:'',
+            orgAddress:null,
+            newDestAddress:true,
+            destAddress:{
+                addressId:0,
+                calledName:'',
+                phoneNo:'',
+                addressDesc:'',
+                longitude:0,
+                latitude:0
+            }
+        };
     };
 }]);

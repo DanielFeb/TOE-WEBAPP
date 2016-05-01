@@ -10,6 +10,7 @@ var app = angular.module('myApp',[
 	'myApp.orderHistory',
 	'myApp.orderNearby',
 	'myApp.addressInfo',
+	'myApp.map',
 	'myApp.userService',
 	'myApp.addressService',
 	'myApp.orderService',
@@ -60,12 +61,17 @@ app.config(function($routeProvider) {
 			controller: 'basicInfoCtrl',
 			reloadOnSearch: false
 		}).
+		when('/route',{
+			templateUrl: 'address/route.html',
+			controller: 'mapCtrl',
+			reloadOnSearch: false
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
 });
 
-app.constant('urlHeader','http://192.168.1.3:7777/');
+app.constant('urlHeader','http://192.168.1.9:7777/');
 app.constant('AUTH_EVENTS', {
 	loginSuccess: 'auth-login-success',
 	loginFailed: 'auth-login-failed',

@@ -1,12 +1,16 @@
-<div class="scrollable">  
-  <div class="scrollable-content">
+<div class="scrollable">
+  <div class="scrollable-content section">
 
-    <div class="list-group text-center">
-      <div class="list-group-item list-group-item-home">
-        <h1>WEB APP</h1>
-      </div>
-
+        <h1 style="text-align: center">Welcome to TOE! </h1>
+    <div class="list-group">
+      <a class="list-group-item"  ui-turn-on="routeModal">
+        路线<i class="fa fa-plus pull-left"></i>
+      </a>
     </div>
-
   </div>
 </div>
+
+<div ui-content-for="modals">
+  <div ng-include="'address/routeModal.html'"></div>
+</div>
+

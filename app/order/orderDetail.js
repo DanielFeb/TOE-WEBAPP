@@ -30,9 +30,6 @@ angular.module('order.orderDetail', [])
             latitude:0
         }
     };
-    $scope.reloadParent = function(){
-        //alert("reloadParent failed!");
-    };
     $scope.deleteOrder = function (){
         orderService.deleteOrder($scope.orderDetail)
             .success(function(){
@@ -41,7 +38,6 @@ angular.module('order.orderDetail', [])
             }).error(function(res) {
                 alert("操作失败："+res.message);
             });
-        $scope.reloadParent()
     };
 
     $scope.finishOrder = function(){
@@ -52,7 +48,6 @@ angular.module('order.orderDetail', [])
             }).error(function(res) {
                 alert("操作失败："+res.message);
             });
-        $scope.reloadParent()
     };
 
     $scope.assignOrder = function (){

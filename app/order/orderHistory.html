@@ -3,11 +3,11 @@
 </div>
 
 <div class="scrollable">
-    <a class="list-group-item" ng-show="showAddBtn()" href="#/order">
-        创建一个新订单<i class="fa fa-plus pull-left"></i>
-    </a>
     <div class="scrollable-content" ui-scroll-bottom='bottomReached()' >
         <div class="list-group">
+            <a class="list-group-item" ng-show="showAddBtn()" href="#/order">
+                创建一个新订单<i class="fa fa-plus pull-left"></i>
+            </a>
             <a ng-repeat="item in history" class="list-group-item" ui-turn-on="orderDetailModal" ng-click="select(item)"  >
                 {{ item.id + item.description}} <i class="fa fa-chevron-right pull-right"></i>
             </a>

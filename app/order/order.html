@@ -17,11 +17,14 @@
                 </div>
                 <div class="form-group">
                     <label>起始地址</label>
-                    <select  ng-model="orderInfo.orgAddress" class="form-control"
+                    <select  ng-model="orderInfo.orgAddress"
+                             class="form-control"
+                             required
                             ng-options="orgAddress.addressDesc+' （'+orgAddress.phoneNo+'）' for orgAddress in orgAddresses">
                         <option value="">请选择起始地址</option>
                     </select>
                 </div>
+                <br>
                 <legend>目的地址</legend>
                 <div class="form-group">
                     <label>称呼</label>
@@ -51,8 +54,8 @@
             </fieldset>
             <hr>
 
-            <button class="btn btn-success btn-block" ng-click="addOrder(orderInfo)" >创建</button>
-            <button class="btn btn-warning btn-block" ng-click="clear(orderInfo)">取消</button>
+            <button class="btn btn-success btn-block" ng-click="addOrder()" >创建</button>
+            <button class="btn btn-warning btn-block" ng-click="clear()">重置</button>
         </form>
     </div>
 </div>

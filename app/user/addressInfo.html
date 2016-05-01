@@ -5,13 +5,17 @@
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom='bottomReached()' >
         <div class="list-group">
-            <a class="list-group-item" ng-show="showAddBtn">
+            <a class="list-group-item" ng-show="showAddBtn" ui-turn-on="addressDetailModal" ng-click="select(null)">
                 创建一个新地址<i class="fa fa-plus pull-left"></i>
             </a>
-            <a ng-repeat="address in addressInfo" class="list-group-item">
+            <a ng-repeat="address in orgAddresses" class="list-group-item" ui-turn-on="addressDetailModal" ng-click="select(address)">
                 {{address.calledName + ' | ' + address.phoneNo + ' | ' + address.addressDesc}} <i class="fa fa-chevron-right pull-right"></i>
             </a>
         </div>
     </div>
+</div>
+
+<div ui-content-for="modals">
+    <div ng-include="'address/addressDetailModal.html'"></div>
 </div>
 

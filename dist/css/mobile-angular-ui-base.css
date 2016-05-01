@@ -8410,7 +8410,8 @@ a.list-group-item .icon.pull-right {
 
 .app {
   height: 100%;
-  position: relative;
+  /*daniel*/
+  /*position: relative;*/
   z-index: 2;
   width: 100%;
   background: #777777;
@@ -8672,6 +8673,8 @@ a.list-group-item .icon.pull-right {
 
 .scrollable {
   position: absolute;
+  /*daniel*/
+  /*width:100%*/
   width: auto;
   height: 100%;
   top: 0;

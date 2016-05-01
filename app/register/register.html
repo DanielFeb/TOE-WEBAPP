@@ -25,7 +25,11 @@
         </div>
         <div class="form-group">
             <label>注册角色</label>
-            <select id="inputRole" ng-model="registerInfo.currentRole" class="form-control" ng-options="role.roleName for role in roleList">
+            <select id="inputRole"
+                    ng-model="registerInfo.currentRole"
+                    required
+                    class="form-control"
+                    ng-options="role.roleName for role in roleList">
               <option value="">请选择角色</option>
             </select>
         </div>
