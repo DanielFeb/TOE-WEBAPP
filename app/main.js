@@ -1,5 +1,6 @@
 var app = angular.module('myApp',[
 	'ngRoute',
+	'ui.bootstrap',
 	'mobile-angular-ui',
 	'mobile-angular-ui.gestures',
 
@@ -14,7 +15,8 @@ var app = angular.module('myApp',[
 	'myApp.userService',
 	'myApp.addressService',
 	'myApp.orderService',
-	'myApp.authService'
+	'myApp.authService',
+	'myApp.confirmationDialogService'
 	]);
 app.run(function($transform) {
   window.$transform = $transform;
@@ -23,7 +25,7 @@ app.run(function($transform) {
 app.config(function($routeProvider) {
 	$routeProvider.
 		when('/', {
-			templateUrl: 'home.html',
+			templateUrl: 'utilViews/home.html',
 			reloadOnSearch: false
 		}).
 		when('/login', {
@@ -85,7 +87,7 @@ app.constant('BASIC_EVENTS', {
 	RESPONSE_LOAD_DATA:'basic-response-load-data'
 });
 
-app.controller('MainController', function($rootScope, $scope, $location, AUTH_EVENTS, userService,authService){
+app.controller('MainController', function($rootScope, $scope, $location, AUTH_EVENTS, userService,confirmationDialogService){
 	$scope.isUserValid = false;
 	$scope.showOwnerMenu = false;
 	$scope.showDelivererMenu = false;
@@ -111,6 +113,22 @@ app.controller('MainController', function($rootScope, $scope, $location, AUTH_EV
 		userService.logout();
 		$location.path('/login').replace();
 		$scope.onUserChangeHandler();
+	};
+
+	$scope.confirmationPop = function(){
+		var custName = "lalalal";
+		var modalOptions = {
+			closeButtonText: 'Cancel',
+			actionButtonText: 'Delete Customer',
+			headerText: 'Delete ' + custName + '?',
+			bodyText: 'Are you sure you want to delete this customer?'
+		};
+
+		confirmationDialogService.showModal({}, modalOptions).then(function (result) {
+			dataService.deleteCustomer($scope.customer.id).then(function () {
+				$location.path('/customers');
+			}, processError);
+		});
 	};
 
 });

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="demo.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+
     <script src="/TOE-WEBAPP/dist/js/mobile-angular-ui.min.js"></script>
     <!-- Required to use $touch, $swipe, $drag and $translate services -->
     <script src="/TOE-WEBAPP/dist/js/mobile-angular-ui.gestures.min.js"></script>
@@ -34,6 +36,7 @@
     <script src="service/addressService.js"></script>
     <script src="service/orderService.js"></script>
     <script src="service/authService.js"></script>
+    <script src="service/confirmationDialogService.js"></script>
     <script src="service/tm.pagination.js"></script>
 
   </head>
@@ -43,7 +46,7 @@
     ui-prevent-touchmove-defaults
     >
 	<!-- Menubar -->
-	<div ng-include="'menubar.html'" 
+	<div ng-include="'utilViews/menubar.html'"
     	    ui-track-as-search-param='true'
     	    class="sidebar sidebar-left"></div>
 	<div class="app" 
