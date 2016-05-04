@@ -5,6 +5,12 @@
 
 angular.module('myApp.confirmationDialogService',['ui.bootstrap'])
 .service('confirmationDialogService', ['$modal', function ($modal) {
+    this.modalTypes={
+        INFO_MODAL:1,
+        WANNING_MODAL:2,
+        ERROR_MODAL:3,
+        CONFIRM_MODAL:4,
+    };
 
     var modalDefaults = {
         backdrop: true,
@@ -17,11 +23,12 @@ angular.module('myApp.confirmationDialogService',['ui.bootstrap'])
         closeButtonText: 'Close',
         actionButtonText: 'OK',
         headerText: 'Proceed?',
-        bodyText: 'Perform this action?'
+        bodyText: 'Perform this action?',
+        modalType: this.modalTypes.CONFIRM_MODAL
     };
 
-    this.showModal = function (customModalDefaults, customModalOptions) {
-        if (!customModalDefaults) customModalDefaults = {};
+    this.showModal = function (customModalOptions) {
+        var customModalDefaults = {};
         customModalDefaults.backdrop = 'static';
         return this.show(customModalDefaults, customModalOptions);
     };
@@ -38,8 +45,9 @@ angular.module('myApp.confirmationDialogService',['ui.bootstrap'])
         angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
         if (!tempModalDefaults.controller) {
-            tempModalDefaults.controller = function ($scope, $modalInstance) {
+            tempModalDefaults.controller = function ($scope, $modalInstance,confirmationDialogService) {
                 $scope.modalOptions = tempModalOptions;
+                $scope.modalOptions.showActionBtn = $scope.modalOptions.modalType == confirmationDialogService.modalTypes.CONFIRM_MODAL;        
                 $scope.modalOptions.ok = function (result) {
                     $modalInstance.close(result);
                 };

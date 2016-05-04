@@ -124,10 +124,11 @@ app.controller('MainController', function($rootScope, $scope, $location, AUTH_EV
 			bodyText: 'Are you sure you want to delete this customer?'
 		};
 
-		confirmationDialogService.showModal({}, modalOptions).then(function (result) {
-			dataService.deleteCustomer($scope.customer.id).then(function () {
-				$location.path('/customers');
-			}, processError);
+		confirmationDialogService.show({}, modalOptions).then(function (result) {
+			alert("Deleted!");
+			// dataService.deleteCustomer($scope.customer.id).then(function () {
+			// 	$location.path('/customers');
+			// }, processError);
 		});
 	};
 

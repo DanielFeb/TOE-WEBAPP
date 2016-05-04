@@ -7,59 +7,16 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 2549,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "home.html",
-			"settings":
-			{
-				"buffer_size": 227,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "menubar.html",
-			"settings":
-			{
-				"buffer_size": 1576,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scroll.html",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "main.js",
-			"settings":
-			{
-				"buffer_size": 1712,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "dist/css/mobile-angular-ui-base.css",
-			"settings":
-			{
-				"buffer_size": 148596,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -67,7 +24,10 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 0.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -80,6 +40,15 @@
 	},
 	"file_history":
 	[
+		"/E/programs/angularjs/TOE-WEBAPP/dist/css/mobile-angular-ui-base.css",
+		"/E/programs/angularjs/mobile/web-app/app/scroll.html",
+		"/E/programs/angularjs/mobile/web-app/app/modal2.html",
+		"/E/programs/angularjs/mobile/web-app/app/home.html",
+		"/E/programs/angularjs/TOE-WEBAPP/main.js",
+		"/E/programs/angularjs/TOE-WEBAPP/scroll.html",
+		"/E/programs/angularjs/TOE-WEBAPP/menubar.html",
+		"/E/programs/angularjs/TOE-WEBAPP/home.html",
+		"/E/programs/angularjs/TOE-WEBAPP/index.html",
 		"/E/programs/angularjs/mobile/web-app/index.html",
 		"/E/programs/angularjs/mobile/web-app/dist/css/mobile-angular-ui-base.css",
 		"/E/programs/angularjs/mobile/web-app/dist/fonts/fontawesome-webfont.svg",
@@ -180,169 +149,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "index.html",
-					"settings":
-					{
-						"buffer_size": 2549,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2516,
-								2516
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 588.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "home.html",
-					"settings":
-					{
-						"buffer_size": 227,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								198,
-								198
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "menubar.html",
-					"settings":
-					{
-						"buffer_size": 1576,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "scroll.html",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "main.js",
-					"settings":
-					{
-						"buffer_size": 1712,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1608,
-								1608
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 378.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "dist/css/mobile-angular-ui-base.css",
-					"settings":
-					{
-						"buffer_size": 148596,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								142806,
-								142806
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 119338.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -377,6 +183,12 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "TOE-WEBAPP.sublime-project",
 	"replace":
 	{
 		"height": 0.0
@@ -385,6 +197,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -393,15 +206,32 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 243.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

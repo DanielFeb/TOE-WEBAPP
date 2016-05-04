@@ -7447,6 +7447,7 @@ button.close {
   display: none;
   overflow: hidden;
   position: fixed;
+  /*height: 300px;    */
   top: 0;
   right: 0;
   bottom: 0;

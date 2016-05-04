@@ -2,7 +2,23 @@
  * Created by Daniel on 2016/4/30.
  */
 angular.module("myApp.map",[])
-.controller("mapCtrl",['$scope','BASIC_EVENTS',function($scope,BASIC_EVENTS) {
+.controller("mapCtrl",['$scope','BASIC_EVENTS','confirmationDialogService',function($scope,BASIC_EVENTS,confirmationDialogService) {
+    $scope.confirmationPop = function(){
+        var custName = "lalalal";
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Delete Customer',
+            headerText: 'Delete ' + custName + '?',
+            bodyText: 'Are you sure you want to delete this customer?'
+        };
+
+        confirmationDialogService.showModal({}, modalOptions).then(function (result) {
+            alert("Deleted!");
+            // dataService.deleteCustomer($scope.customer.id).then(function () {
+            //  $location.path('/customers');
+            // }, processError);
+        });
+    };
     // 百度地图API功能
     function G(id) {
         return document.getElementById(id);
@@ -14,6 +30,7 @@ angular.module("myApp.map",[])
     var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
         {"input" : "suggestId"
             ,"location" : map
+            ,"z-index":99999
         });
 
     ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
