@@ -8,7 +8,7 @@
                 <h4 class="modal-title">单号：{{orderDetail.orderId}} </h4>
                 <button ui-turn-off="orderDetailModal" ng-click="assignOrder()" ng-show="showAssignBtn()" class="btn btn-info btn-block">接单</button>
                 <button ui-turn-off="orderDetailModal" ng-click="finishOrder()" ng-show="showFinishBtn()" class="btn btn-success btn-block">完成订单</button>
-                <button ui-turn-off="orderDetailModal" ng-click="deleteOrder()" ng-show="showCancelBtn()" class="btn btn-danger btn-block">取消订单</button>
+                <button ng-click="deleteOrder()" ng-show="showCancelBtn()" class="btn btn-danger btn-block">取消订单</button>
             </div>
             <div class="modal-body" >
                 <form role="form">

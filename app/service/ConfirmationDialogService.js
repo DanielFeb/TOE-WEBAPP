@@ -20,11 +20,11 @@ angular.module('myApp.confirmationDialogService',['ui.bootstrap'])
     };
 
     var modalOptions = {
-        closeButtonText: 'Close',
-        actionButtonText: 'OK',
-        headerText: 'Proceed?',
-        bodyText: 'Perform this action?',
-        modalType: this.modalTypes.CONFIRM_MODAL
+        closeButtonText: '关闭',
+        actionButtonText: '确认',
+        headerText: '提示',
+        bodyText: '这是一个alert窗口！',
+        modalType: this.modalTypes.INFO_MODAL
     };
 
     this.showModal = function (customModalOptions) {

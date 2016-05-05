@@ -12,6 +12,7 @@ var app = angular.module('myApp',[
 	'myApp.orderNearby',
 	'myApp.addressInfo',
 	'myApp.map',
+	'myApp.serviceBase',
 	'myApp.userService',
 	'myApp.addressService',
 	'myApp.orderService',
@@ -124,7 +125,7 @@ app.controller('MainController', function($rootScope, $scope, $location, AUTH_EV
 			bodyText: 'Are you sure you want to delete this customer?'
 		};
 
-		confirmationDialogService.show({}, modalOptions).then(function (result) {
+		confirmationDialogService.showModal(modalOptions).then(function (result) {
 			alert("Deleted!");
 			// dataService.deleteCustomer($scope.customer.id).then(function () {
 			// 	$location.path('/customers');

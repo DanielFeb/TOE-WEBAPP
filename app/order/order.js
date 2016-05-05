@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('myApp.order', ['ngRoute'])
-.controller('orderCtrl', ["$scope","$location","addressService","orderService",'authService',
-    function($scope,$location,addressService,orderService,authService) {
+.controller('orderCtrl',function($scope,$location,addressService,orderService,authService) {
 
     $scope.pageName = 'order';
     if(!authService.checkAuthorizationToLoad($scope.pageName)){
@@ -61,4 +60,4 @@ angular.module('myApp.order', ['ngRoute'])
             }
         };
     };
-}]);
+});

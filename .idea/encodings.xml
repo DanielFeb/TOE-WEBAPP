@@ -4,8 +4,10 @@
     <file url="file://$PROJECT_DIR$/app/address/map.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/demo.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/service/ConfirmationDialogService.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/service/authService.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/service/orderService.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/service/serviceBase.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/service/userService.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/utilViews/home.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/utilViews/menubar.html" charset="UTF-8" />

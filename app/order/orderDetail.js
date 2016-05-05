@@ -4,8 +4,7 @@
 'use strict';
 
 angular.module('order.orderDetail', [])
-.controller('orderDetailCtrl',['$scope','BASIC_EVENTS','orderService','userService',
-    function($scope,BASIC_EVENTS,orderService,userService){
+.controller('orderDetailCtrl',function($scope,BASIC_EVENTS,orderService,userService,confirmationDialogService,SharedState){
     $scope.readOnly = true;
     $scope.orderDetail = {
         orderId:0,
@@ -31,13 +30,24 @@ angular.module('order.orderDetail', [])
         }
     };
     $scope.deleteOrder = function (){
-        orderService.deleteOrder($scope.orderDetail)
-            .success(function(){
-                $scope.reload();
-                alert("取消成功！");
-            }).error(function(res) {
-                alert("操作失败："+res.message);
-            });
+        var modalOptions = {
+            closeButtonText: '取消',
+            actionButtonText: '确定',
+            headerText: '删除订单？',
+            bodyText: '是否要删除订单：'+  $scope.orderDetail.orderId + '-' + $scope.orderDetail.description +'？',
+            modalType:confirmationDialogService.modalTypes.CONFIRM_MODAL
+        };
+
+        confirmationDialogService.showModal(modalOptions).then(function (result) {
+            orderService.deleteOrder($scope.orderDetail)
+                .success(function(){
+                    $scope.reload();
+                    confirmationDialogService.showModal({bodyText:"删除成功！"});
+                }).error(function(res) {
+                    confirmationDialogService.showModal({bodyText:"操作失败：" + res.message});
+                });
+            SharedState.turnOff('orderDetailModal');
+        });
     };
 
     $scope.finishOrder = function(){
@@ -94,4 +104,4 @@ angular.module('order.orderDetail', [])
         $scope.orderDetail = initData;
     });
     $scope.$emit(BASIC_EVENTS.REQUEST_LOAD_DATA);
-}]);
+});

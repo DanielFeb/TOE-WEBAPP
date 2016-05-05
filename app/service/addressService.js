@@ -6,15 +6,15 @@
 /* addressService */
 
 angular.module('myApp.addressService', [])
-.service('addressService', ['$http','urlHeader',function ($http,urlHeader){
+.service('addressService', function (serviceExecutor){
     this.maxAddressCount = 5;
 
     this.orgAddresses = [];
     this.destAddresses = [];
 
     this.deleteAddress = function(address){
-        return $http({
-            url:urlHeader+'user/address/' + address.addressId,
+        return serviceExecutor.executeHttpRequest({
+            url:'user/address/' + address.addressId,
             method:'DELETE'
         });
     };
@@ -28,8 +28,8 @@ angular.module('myApp.addressService', [])
     };
     this.addAddress = function(address){
         if(this.maxAddressCount > this.orgAddresses.length){
-            return  $http({
-                url:urlHeader+'user/address',
+            return  serviceExecutor.executeHttpRequest({
+                url:'user/address',
                 method:'POST',
                 data:address
             });
@@ -58,4 +58,4 @@ angular.module('myApp.addressService', [])
     this.isOrgAddressesFull = function(){
         return this.orgAddresses.length >= this.maxAddressCount;
     }
-}]);
+});
