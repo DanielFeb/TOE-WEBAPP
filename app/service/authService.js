@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module("myApp.authService",[])
-.service('authService',['$location','userService',function ($location,userService) {
+.service('authService',['$location','userService',function ($location,userService,confirmationDialogService) {
     this.ROLES = [
         {
             role: 'ROLE_OWNER',
@@ -34,7 +34,7 @@ angular.module("myApp.authService",[])
             result =  userService.user.role === 'ROLE_OWNER'
         }
         if(result == false){
-            alert("您没有权限浏览该页面！");
+            confirmationDialogService.showModal({bodyText: "您没有权限浏览该页面！" });
             $location.path("#/").replace();
         }
         return result;

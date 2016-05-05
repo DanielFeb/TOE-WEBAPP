@@ -73,8 +73,6 @@ app.config(function($routeProvider) {
 			redirectTo: '/'
 		});
 });
-
-app.constant('urlHeader','http://192.168.1.9:7777/');
 app.constant('AUTH_EVENTS', {
 	loginSuccess: 'auth-login-success',
 	loginFailed: 'auth-login-failed',
@@ -126,7 +124,7 @@ app.controller('MainController', function($rootScope, $scope, $location, AUTH_EV
 		};
 
 		confirmationDialogService.showModal(modalOptions).then(function (result) {
-			alert("Deleted!");
+			confirmationDialogService.showModal({});
 			// dataService.deleteCustomer($scope.customer.id).then(function () {
 			// 	$location.path('/customers');
 			// }, processError);

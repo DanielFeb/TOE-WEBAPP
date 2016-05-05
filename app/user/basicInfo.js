@@ -15,7 +15,7 @@ angular.module('myApp.basicInfo', ['ngRoute'])
         calledName:'',
         credit:'',
         money:''
-    }
+    };
     $scope.selfInfo.calledName = userInfo.username;
     $scope.selfInfo.credit = userInfo.credit;
     $scope.selfInfo.money = userInfo.money;

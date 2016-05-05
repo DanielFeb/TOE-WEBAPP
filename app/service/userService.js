@@ -5,7 +5,7 @@
 
 /* userService */
 angular.module('myApp.userService', [])
-.service('userService', ['$http','urlHeader',function ($http,urlHeader) {
+.service('userService', function ($http,serviceExecutor){
     this.user = {
         userId:0,
         username:'',
@@ -32,8 +32,8 @@ angular.module('myApp.userService', [])
         this.user.role = data.role;
     };
     this.register = function(username,password,role){
-        return $http({
-            url:urlHeader+'signup',
+        return serviceExecutor.executeHttpRequest({
+            url:'signup',
             method:'POST',
             data:{
                 "username":username,
@@ -45,8 +45,8 @@ angular.module('myApp.userService', [])
     this.fetchUserInfo = function(username,password){
         var localThis = this;
         $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password);
-        return $http({
-            url: urlHeader + 'user',
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url: 'user',
             method: 'GET'
         }).success(function (res){
             localThis.assignUserBasicInfo(res);
@@ -54,8 +54,8 @@ angular.module('myApp.userService', [])
     };
 
     this.changeUserPassword = function(changInfo){
-        return $http({
-            url:urlHeader+'user/password',
+        return serviceExecutor.executeHttpRequest({
+            url:'user/password',
             data:{
                 oldPassword:changInfo.oldPassword,
                 newPassword:changInfo.newPassword
@@ -78,4 +78,4 @@ angular.module('myApp.userService', [])
     this.isUserDeliverer = function(){
         return this.user.role == 'ROLE_DELIVERER';
     };
-}]);
+});

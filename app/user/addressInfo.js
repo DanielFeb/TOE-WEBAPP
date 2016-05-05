@@ -31,9 +31,7 @@ angular.module('myApp.addressInfo', ['ngRoute','address.addressDetail'])
                     $scope.orgAddresses = addressService.orgAddresses;
                     $scope.showAddBtn  = !addressService.isOrgAddressesFull();
                 }
-            ).error(function(res){
-                alert("获取源地址失败：" + res.message);
-            })
+            );
     };
     $scope.reLoad();
 

@@ -29,27 +29,20 @@ angular.module("address.addressDetail",[])
     $scope.modifyAddress = function(){
         addressService.modifyAddress($scope.addressDetail)
             .success(function(){
+                SharedState.turnOff('addressDetailModal');
+            }).then(function(){
                 $scope.reLoad();
-                alert('修改成功！')
-            }).error(function(res){
-                $scope.reLoad();
-                alert('修改失败:'+ res.message);
             });
     };
     $scope.addAddress = function(){
-        addressService.addAddress($scope.addressDetail).then(function(){
-            $scope.reLoad();
-        });
-            //.success(function(){
-            //    $scope.reLoad();
-            //    alert('新增成功！')
-            //}).error(function(res){
-            //    $scope.reLoad();
-            //    alert('新增失败:'+ res.message);
-            //});
+        addressService.addAddress($scope.addressDetail)
+            .success(function(){
+                SharedState.turnOff('addressDetailModal');
+            }).then(function(){
+                $scope.reLoad();
+            });
     };
     $scope.deleteAddress = function(){
-        var custName = "lalalal";
         var modalOptions = {
             closeButtonText: '取消',
             actionButtonText: '删除',
@@ -57,17 +50,13 @@ angular.module("address.addressDetail",[])
             bodyText: '是否要删除地址：'+  $scope.addressDetail.addressDesc  +'？',
             modalType:confirmationDialogService.modalTypes.CONFIRM_MODAL
         };
-
         confirmationDialogService.showModal(modalOptions).then(function (result) {
             addressService.deleteAddress($scope.addressDetail)
                 .success(function(){
+                    SharedState.turnOff('addressDetailModal');
+                }).then(function(){
                     $scope.reLoad();
-                    alert('删除成功！')
-                }).error(function(res){
-                    $scope.reLoad();
-                    alert('删除失败:'+ res.message);
                 });
-            SharedState.turnOff('addressDetailModal');
         });
     };
 });

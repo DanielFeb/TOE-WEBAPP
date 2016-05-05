@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.order', ['ngRoute'])
-.controller('orderCtrl',function($scope,$location,addressService,orderService,authService) {
+.controller('orderCtrl',function($scope,$location,addressService,orderService,authService,confirmationDialogService ) {
 
     $scope.pageName = 'order';
     if(!authService.checkAuthorizationToLoad($scope.pageName)){
@@ -13,11 +13,9 @@ angular.module('myApp.order', ['ngRoute'])
         .success(function(res){
             $scope.orgAddresses = addressService.orgAddresses;
             if($scope.orgAddresses.length == 0){
-                alert("请先创建一个起始地址");
+                confirmationDialogService.showModal({bodyText: "您需要先完善个人地址！" });
                 $location.path("/addressInfo").replace();
             }
-        }).error(function(res){
-            alert("获取源地址失败：" + res.message);
         });
 
     $scope.orderInfo = {
@@ -38,12 +36,8 @@ angular.module('myApp.order', ['ngRoute'])
         orderService.addOrder($scope.orderInfo)
             .success(function(){
                 $location.path('/orderHistory').replace();
-                alert("创建成功！");
-            }).error(function(res){
-                alert("创建失败：" + res.message);
             });
     };
-
     $scope.clear = function(){
         $scope.orderInfo = {
             description:'',

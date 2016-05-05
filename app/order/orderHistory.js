@@ -40,7 +40,6 @@ angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDeta
     };
 
     $scope.bottomReached = function(){
-        alert("到底了！");
     };
 
     $scope.select = function(item){

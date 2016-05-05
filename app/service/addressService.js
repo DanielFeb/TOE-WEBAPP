@@ -6,7 +6,7 @@
 /* addressService */
 
 angular.module('myApp.addressService', [])
-.service('addressService', function (serviceExecutor){
+.service('addressService', function (serviceExecutor,confirmationDialogService){
     this.maxAddressCount = 5;
 
     this.orgAddresses = [];
@@ -20,8 +20,8 @@ angular.module('myApp.addressService', [])
     };
 
     this.modifyAddress = function(address){
-        return $http({
-            url:urlHeader+'user/address',
+        return serviceExecutor.executeHttpRequest({
+            url:'user/address',
             method:'PUT',
             data:address
         });
@@ -34,13 +34,13 @@ angular.module('myApp.addressService', [])
                 data:address
             });
         }else{
-            alert("默认地址最多有"+maxAddressCount+"个！");
+            confirmationDialogService.showModal({bodyText: "默认地址最多有" + maxAddressCount+"个！" });
         }
     };
     this.fetchOrgAddresses = function(){
         var localThis = this;
-        return $http({
-            url:urlHeader + 'user/addresses/org',
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url:'user/addresses/org',
             method:'GET'
         }).success(function(res){
             localThis.orgAddresses = res;
@@ -48,8 +48,8 @@ angular.module('myApp.addressService', [])
     };
     this.fetchDestAddresses = function(){
         var localThis = this;
-        return $http({
-            url:urlHeader + 'user/addresses/dest',
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url: 'user/addresses/dest',
             method:'GET'
         }).success(function(res){
             localThis.destAddresses = res;

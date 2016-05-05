@@ -3,22 +3,6 @@
  */
 angular.module("myApp.map",[])
 .controller("mapCtrl",['$scope','BASIC_EVENTS','confirmationDialogService',function($scope,BASIC_EVENTS,confirmationDialogService) {
-    $scope.confirmationPop = function(){
-        var custName = "lalalal";
-        var modalOptions = {
-            closeButtonText: 'Cancel',
-            actionButtonText: 'Delete Customer',
-            headerText: 'Delete ' + custName + '?',
-            bodyText: 'Are you sure you want to delete this customer?'
-        };
-
-        confirmationDialogService.showModal({}, modalOptions).then(function (result) {
-            alert("Deleted!");
-            // dataService.deleteCustomer($scope.customer.id).then(function () {
-            //  $location.path('/customers');
-            // }, processError);
-        });
-    };
     // 百度地图API功能
     function G(id) {
         return document.getElementById(id);

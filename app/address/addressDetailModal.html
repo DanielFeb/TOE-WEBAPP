@@ -41,13 +41,12 @@
                             <div id="map" class="map"></div>
                         </div>
                     </fieldset>
-
+                    <button ng-show="!isOldAddress" class="btn btn-success btn-block" ng-click="addAddress()"  >新增</button>
+                    <button ng-show="isOldAddress" class="btn btn-info btn-block" ng-click="modifyAddress()"  >修改</button>
+                    <button ng-show="isOldAddress" class="btn btn-danger btn-block" ng-click="deleteAddress()"  >删除</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button ui-turn-off="addressDetailModal" ng-show="!isOldAddress" class="btn btn-success btn-block" ng-click="addAddress()"  >新增</button>
-                <button ui-turn-off="addressDetailModal" ng-show="isOldAddress" class="btn btn-info btn-block" ng-click="modifyAddress()"  >修改</button>
-                <button ng-show="isOldAddress" class="btn btn-danger btn-block" ng-click="deleteAddress()"  >删除</button>
                 <button ui-turn-off="addressDetailModal" class="btn btn-default btn-block">关闭</button>
             </div>
         </div>

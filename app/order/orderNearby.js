@@ -40,8 +40,7 @@ angular.module('myApp.orderNearby', ['ngRoute'])
         $scope.reload();
     };
 
-    $scope.bottomReached = function(){
-        alert("到底了！");
+    $scope.bottomReached = function(){;
     };
 
     $scope.select = function(item){

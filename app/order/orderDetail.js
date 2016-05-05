@@ -41,32 +41,28 @@ angular.module('order.orderDetail', [])
         confirmationDialogService.showModal(modalOptions).then(function (result) {
             orderService.deleteOrder($scope.orderDetail)
                 .success(function(){
+                    SharedState.turnOff('orderDetailModal');
+                }).then(function(){
                     $scope.reload();
-                    confirmationDialogService.showModal({bodyText:"删除成功！"});
-                }).error(function(res) {
-                    confirmationDialogService.showModal({bodyText:"操作失败：" + res.message});
                 });
-            SharedState.turnOff('orderDetailModal');
         });
     };
 
     $scope.finishOrder = function(){
         orderService.closeOrder($scope.orderDetail)
             .success(function(){
+                SharedState.turnOff('orderDetailModal');
+            }).then(function(){
                 $scope.reload();
-                alert("订单完成！");
-            }).error(function(res) {
-                alert("操作失败："+res.message);
             });
     };
 
     $scope.assignOrder = function (){
         orderService.assignOrder($scope.orderDetail)
             .success(function(){
+                SharedState.turnOff('orderDetailModal');
+            }).then(function(){
                 $scope.reload();
-                alert("接单成功");
-            }).error(function(res) {
-                alert("操作失败："+res.message);
             });
     };
 

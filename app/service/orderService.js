@@ -6,7 +6,7 @@
 /* orderService */
 
 angular.module('myApp.orderService', [])
-.service('orderService', ['$http','urlHeader',function ($http, urlHeader) {
+.service('orderService', function (serviceExecutor){
     this.statusCode = {
         NEW:0,
         ASSIGNED:1,
@@ -26,42 +26,42 @@ angular.module('myApp.orderService', [])
         }
     };
     this.assignOrder = function(order){
-        return $http({
-            url:urlHeader+'order/assignment',
+        return serviceExecutor.executeHttpRequest({
+            url:'order/assignment',
             data:order,
             method:'POST'
         });
     };
     this.closeOrder = function(order){
-        return $http({
-            url:urlHeader+'order/achievement',
+        return serviceExecutor.executeHttpRequest({
+            url:'order/achievement',
             data:order,
-            method:'POST',
+            method:'POST'
         });
     };
     this.deleteOrder = function(order){
-        return $http({
-            url:urlHeader+'order/'+order.orderId,
-            method:'DELETE',
+        return serviceExecutor.executeHttpRequest({
+            url:'order/'+order.orderId,
+            method:'DELETE'
         });
     };
     this.getOrderNearby = function(postData){
-        return $http({
-            url:urlHeader+'order/nearby',
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url:'order/nearby',
             method:'POST',
             data:postData
         });
     };
     this.getOrderHistory = function (postData) {
-        return $http({
-            url:urlHeader+'order/history',
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url:'order/history',
             method:'POST',
             data:postData
         });
     };
     this.addOrder = function(order){
-        return $http({
-            url:urlHeader+'order',
+        return serviceExecutor.executeHttpRequest({
+            url:'order',
             method:'POST',
             data:{
                 "description":order.description,
@@ -72,4 +72,4 @@ angular.module('myApp.orderService', [])
             }
         })
     };
-}]);
+});

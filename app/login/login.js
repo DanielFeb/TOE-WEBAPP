@@ -19,8 +19,6 @@ angular.module('myApp.login', ['ngRoute'])
                     }
                     $scope.$emit(AUTH_EVENTS.loginSuccess);
                 }
-            }).error(function(res){
-                alert("登录失败！" + res.message);
             });
     };
 }]);
