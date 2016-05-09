@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/4/10.
  */
 
-'useStrict'
+'use Strict'
 
 angular.module('myApp.basicInfo', ['ngRoute'])
 .controller('basicInfoCtrl', ['$scope','$http','userService','authService',function($scope,$http,userService,authService) {

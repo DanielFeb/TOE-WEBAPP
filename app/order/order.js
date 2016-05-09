@@ -13,7 +13,7 @@ angular.module('myApp.order', ['ngRoute'])
         .success(function(res){
             $scope.orgAddresses = addressService.orgAddresses;
             if($scope.orgAddresses.length == 0){
-                confirmationDialogService.showModal({bodyText: "您需要先完善个人地址！" });
+                confirmationDialogService.showModal({bodyText: "您需要先完善个人地址，帮您跳转到地址管理界面！" });
                 $location.path("/addressInfo").replace();
             }
         });

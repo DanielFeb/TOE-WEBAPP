@@ -3,7 +3,7 @@
  */
 
 'use strict';
-//.constant("requestUrl","mockdata/tickeHistory.json")
+
 angular.module('myApp.orderHistory', ['ngRoute','tm.pagination','order.orderDetail'])
 .controller('orderHistoryCtrl', ['$scope', '$location', 'userService', 'orderService', 'BASIC_EVENTS','authService',
     function($scope,$location,userService,orderService,BASIC_EVENTS,authService) {

@@ -8412,7 +8412,7 @@ a.list-group-item .icon.pull-right {
 .app {
   height: 100%;
   /*daniel*/
-  /*position: relative;*/
+  position: relative;
   z-index: 2;
   width: 100%;
   background: #777777;

@@ -50,6 +50,8 @@ angular.module('myApp.userService', [])
             method: 'GET'
         }).success(function (res){
             localThis.assignUserBasicInfo(res);
+        }).error(function(){
+            $http.defaults.headers.common['Authorization'] = '';
         });
     };
 
