@@ -5,7 +5,7 @@
 
 angular.module('myApp.serviceBase',[])
 .service('serviceExecutor',function($http,confirmationDialogService){
-    this.urlHeader = 'http://192.168.1.11:7777/';
+    this.urlHeader = 'http://192.168.1.3:7777/';
     this.executeHttpRequestBase = function(httpOptions,infoOptions){
         return $http({
             url:this.urlHeader + httpOptions.url,

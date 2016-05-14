@@ -5208,6 +5208,11 @@ tbody.collapse.in {
   outline: 0;
 }
 
+/*Daniel add*/
+.dropdown-menu-block {
+  width: 100%;
+}
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
