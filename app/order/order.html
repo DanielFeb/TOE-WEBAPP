@@ -48,7 +48,20 @@
                            ng-model="orderInfo.destAddress.addressDesc"
                            class="form-control"
                            required
-                           placeholder="地址">
+                           placeholder="地址"
+                           ng-change="searchAddress()">
+                    <div class="dropdown">
+                        <ul ui-state="addressSearchDropDown"
+                            class="dropdown-menu dropdown-menu-block"
+                            ui-outer-click="Ui.turnOff('addressSearchDropDown')"
+                            ui-outer-click-if="Ui.active('addressSearchDropDown')"
+                            role="menu"
+                            ui-show="addressSearchDropDown"
+                            ui-turn-off="addressSearchDropDown">
+                            <li ng-repeat="item in localSearchResults" ng-click="selectResult(item)"><a>{{item.title}},{{item.address}}</a>
+                        </ul>
+                    </div>
+                    <div id="map" class="map"></div>
                 </div>
 
             </fieldset>

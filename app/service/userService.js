@@ -42,6 +42,17 @@ angular.module('myApp.userService', [])
             }
         });
     };
+    this.reloadUserInfo = function (){
+        var localThis = this;
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url: 'user',
+            method: 'GET'
+        }).success(function (res){
+            localThis.assignUserBasicInfo(res);
+        }).error(function(){
+            $http.defaults.headers.common['Authorization'] = '';
+        });
+    };
     this.fetchUserInfo = function(username,password){
         var localThis = this;
         $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password);

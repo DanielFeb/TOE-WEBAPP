@@ -3,8 +3,7 @@
     <div class="modal-dialog scrollable">
         <div class="modal-content scrollable-content">
             <div class="modal-header">
-                <button class="close"
-                        ui-turn-off="addressDetailModal">&times;</button>
+                <button class="close" ng-click="close()">&times;</button>
                 <h4 class="modal-title">地址详情</h4>
             </div>
             <div class="modal-body" >
@@ -59,7 +58,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button ui-turn-off="addressDetailModal" class="btn btn-default btn-block">关闭</button>
+                <button ng-click="close()" class="btn btn-default btn-block">关闭</button>
             </div>
         </div>
     </div>

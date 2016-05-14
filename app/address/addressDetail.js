@@ -17,8 +17,6 @@ angular.module("address.addressDetail",[])
 
     $scope.localSearchResults = [];
 
-    $scope.currentMapPoint = null;
-
     // Baidu map functions
     $scope.map = new BMap.Map("map");
     $scope.map.centerAndZoom("上海",18);
@@ -44,7 +42,6 @@ angular.module("address.addressDetail",[])
     };
 
     $scope.selectResult = function(mapPoint){
-        $scope.currentMapPoint = mapPoint;
         $scope.addressDetail.addressDesc = mapPoint.title;
         $scope.addressDetail.latitude = mapPoint.point.lat;
         $scope.addressDetail.longitude = mapPoint.point.lng;
@@ -92,6 +89,11 @@ angular.module("address.addressDetail",[])
             }).then(function(){
                 $scope.reLoad();
             });
+    };
+
+    $scope.close = function(){
+        SharedState.turnOff('addressDetailModal');
+        $scope.reLoad();
     };
     $scope.deleteAddress = function(){
         var modalOptions = {

@@ -10,15 +10,19 @@ angular.module('myApp.basicInfo', ['ngRoute'])
     if(!authService.checkAuthorizationToLoad($scope.pageName)){
         return;
     }
-    var userInfo = userService.user;
+
     $scope.selfInfo = {
         calledName:'',
         credit:'',
         money:''
     };
-    $scope.selfInfo.calledName = userInfo.username;
-    $scope.selfInfo.credit = userInfo.credit;
-    $scope.selfInfo.money = userInfo.money;
+   userService.reloadUserInfo().then(function(){
+       var userInfo = userService.user;
+       $scope.selfInfo.calledName = userInfo.username;
+       $scope.selfInfo.credit = userInfo.credit;
+       $scope.selfInfo.money = userInfo.money;
+   });
+
     $scope.changePassword = function(changInfo){
         userService.changeUserPassword(changInfo);
     }

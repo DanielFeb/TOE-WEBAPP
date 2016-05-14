@@ -78,21 +78,42 @@ angular.module('order.orderDetail', [])
         return userService.isUserDeliverer() && $scope.orderDetail.status == orderService.statusCode.NEW;
     };
 
-    $scope.destination = function(item){
-        return item.destAddress.addressDesc;
+    $scope.showAssignTime = function(){
+        return $scope.orderDetail.status == orderService.statusCode.ASSIGNED || $scope.orderDetail.status == orderService.statusCode.FINISHED;;
     };
 
-    $scope.startTime = function(item){
+    $scope.showEndTime = function(){
+        return $scope.orderDetail.status == orderService.statusCode.FINISHED;
+    };
+
+
+    $scope.destination = function(address){
+        return address.destAddress.addressDesc;
+    };
+
+    $scope.startTime = function(address){
         var newDate = new Date();
-        newDate.setTime(item.createTime );
+        newDate.setTime(address.createTime );
         return  newDate.toLocaleString();
     };
 
-    $scope.status = function(item){
-        return  orderService.codeConvert(item.status);
+    $scope.endTime = function(address){
+        var newDate = new Date();
+        newDate.setTime(address.endTime);
+        return  newDate.toLocaleString();
     };
 
-    $scope.address =function(item){
+    $scope.assignTime = function(address){
+        var newDate = new Date();
+        newDate.setTime(address.assignTime);
+        return  newDate.toLocaleString();
+    };
+
+    $scope.status = function(address){
+        return  orderService.codeConvert(address.status);
+    };
+
+    $scope.address =function(address){
         return item.orgAddress.addressDesc;
     };
 
