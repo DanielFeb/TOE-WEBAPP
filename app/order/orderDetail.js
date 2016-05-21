@@ -121,4 +121,15 @@ angular.module('order.orderDetail', [])
         $scope.orderDetail = initData;
     });
     $scope.$emit(BASIC_EVENTS.REQUEST_LOAD_DATA);
+
+    $scope.map = new BMap.Map("map");
+    $scope.map.centerAndZoom("上海",15);
+    $scope.map.disableDragging();   // disable the dragging
+    $scope.map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
+    $scope.walking = new BMap.WalkingRoute( $scope.map, {renderOptions:{map:  $scope.map, autoViewport: true}});
+
+    $scope.orgPoint = new BMap.Point($scope.orderDetail.orgAddress.longitude,$scope.orderDetail.orgAddress.latitude);
+    $scope.desPoint = new BMap.Point($scope.orderDetail.destAddress.longitude,$scope.orderDetail.destAddress.latitude);
+    $scope.walking.search( $scope.orgPoint,  $scope.desPoint);
+
 });

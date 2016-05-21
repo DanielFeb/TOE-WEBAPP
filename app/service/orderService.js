@@ -66,10 +66,19 @@ angular.module('myApp.orderService', [])
             data:{
                 "description":order.description,
                 "orgAddressId":order.orgAddress.addressId,
-                "newDestAddress":order.newDestAddress,
+                "itemTypeId":order.itemType.itemTypeId,
+                "weight":order.weight,
+                "distance":0,
+                "newDestAddress":true,
                 "destAddressId":order.destAddress.addressId,
                 "destAddress":order.destAddress
             }
         })
     };
+    this.getItemTypes = function(){
+        return serviceExecutor.executeHttpRequestNoSuccessInfo({
+            url:'itemTypes',
+            method:'GET'
+        });
+    }
 });

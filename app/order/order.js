@@ -11,27 +11,18 @@ angular.module('myApp.order', ['ngRoute'])
     $scope.orgAddresses = null;
     addressService.fetchOrgAddresses()
         .success(function(res){
-            $scope.orgAddresses = addressService.orgAddresses;
+            $scope.orgAddresses = res;
             if($scope.orgAddresses.length == 0){
                 confirmationDialogService.showModal({bodyText: "您需要先完善个人地址，帮您跳转到地址管理界面！" });
                 $location.path("/addressInfo").replace();
             }
         });
-
-    $scope.orderInfo = {
-        description:'',
-        payment:'',
-        orgAddress:null,
-        newDestAddress:true,
-        destAddress:{
-            addressId:0,
-            calledName:'',
-            phoneNo:'',
-            addressDesc:'',
-            longitude:0,
-            latitude:0
-        }
-    };
+    $scope.itemTypes = null;
+    orderService.getItemTypes()
+        .success(function(res){
+            $scope.itemTypes = res;
+        });
+    $scope.orderInfo = null;
     $scope.addOrder = function(){
         orderService.addOrder($scope.orderInfo)
             .success(function(){
@@ -39,27 +30,13 @@ angular.module('myApp.order', ['ngRoute'])
             });
     };
     $scope.clear = function(){
-        $scope.orderInfo = {
-            description:'',
-            payment:'',
-            orgAddress:null,
-            newDestAddress:true,
-            destAddress:{
-                addressId:0,
-                calledName:'',
-                phoneNo:'',
-                addressDesc:'',
-                longitude:0,
-                latitude:0
-            }
-        };
+        $scope.orderInfo = null;
     };
     $scope.localSearchResults = [];
 
     // Baidu map functions
     $scope.map = new BMap.Map("map");
     $scope.map.centerAndZoom("上海",18);
-    $scope.map.disableDragging();   // disable the dragging
     $scope.map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
 
     $scope.localSearchOptions = {

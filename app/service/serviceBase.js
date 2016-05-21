@@ -5,7 +5,7 @@
 
 angular.module('myApp.serviceBase',[])
 .service('serviceExecutor',function($http,confirmationDialogService){
-    this.urlHeader = 'http://192.168.1.3:7777/';
+    this.urlHeader = 'http://localhost:7777/';
     this.executeHttpRequestBase = function(httpOptions,infoOptions){
         return $http({
             url:this.urlHeader + httpOptions.url,
@@ -13,16 +13,32 @@ angular.module('myApp.serviceBase',[])
             data:httpOptions.data
         }).success(function(){
             if(infoOptions.showSuccessInfo){
-                confirmationDialogService.showModal({bodyText:"成功！"});
+                if(infoOptions.successInfo){
+                    confirmationDialogService.showModal({bodyText:infoOptions.successInfo});
+                } else {
+                    confirmationDialogService.showModal({bodyText:"成功！"});
+                }
             }
         }).error(function(res) {
             if(infoOptions.showFailedInfo) {
-                confirmationDialogService.showModal({bodyText: "失败：" + res.message});
+                if(infoOptions.errorInfo){
+                    confirmationDialogService.showModal({bodyText:infoOptions.errorInfo});
+                } else {
+                    confirmationDialogService.showModal({bodyText: "失败：" + res.message});
+                }
             }
         });
     };
-    this.executeHttpRequest = function(httpOptions){
-        return this.executeHttpRequestBase(httpOptions,{showSuccessInfo:true,showFailedInfo:true});
+    this.executeHttpRequest = function(httpOptions,successInfo,errorInfo){
+        return this.executeHttpRequestBase(
+            httpOptions,
+            {
+                showSuccessInfo:true,
+                showFailedInfo:true,
+                successInfo:successInfo,
+                errorInfo:errorInfo
+            }
+        );
     };
     this.executeHttpRequestNoSuccessInfo = function(httpOptions){
         return this.executeHttpRequestBase(httpOptions,{showSuccessInfo:false,showFailedInfo:true});

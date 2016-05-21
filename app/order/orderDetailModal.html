@@ -14,14 +14,31 @@
             <div class="modal-body" >
                 <form role="form">
                     <fieldset>
-                        <legend>订单详情：</legend>
+                        <legend>时间跟踪：</legend>
                         <h4 class="text-left">创建时间：{{startTime(orderDetail)}} </h4>
                         <h4 class="text-left" ng-show="showAssignTime()">接单时间：{{assignTime(orderDetail)}} </h4>
                         <h4 class="text-left" ng-show="showEndTime()">完成时间：{{endTime(orderDetail)}} </h4>
+                        <legend>物品信息：</legend>
                         <div class="form-group">
                             <label>描述信息：</label>
                             <input type="text"
                                    ng-model="orderDetail.description"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>类别：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.itemType.name"
+                                   class="form-control"
+                                   required
+                                   ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <label>重量/kg：</label>
+                            <input type="text"
+                                   ng-model="orderDetail.weight"
                                    class="form-control"
                                    required
                                    ng-readonly="readOnly">
@@ -83,6 +100,9 @@
                                    class="form-control"
                                    required
                                    ng-readonly="readOnly">
+                        </div>
+                        <div class="form-group">
+                            <div id="map" class="map"></div>
                         </div>
                     </fieldset>
                 </form>
