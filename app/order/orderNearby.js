@@ -21,16 +21,29 @@ angular.module('myApp.orderNearby', ['ngRoute'])
     $scope.currentOrder = null;
 
     $scope.getOrderNearByPage = function () {
-
         var postData = {
             pageNo: $scope.paginationConf.currentPage,
-            countPerPage: $scope.paginationConf.itemsPerPage
+            countPerPage: $scope.paginationConf.itemsPerPage,
+            centerPoint:{
+                longitude:0.0,
+                latitude:0.0
+            }
         };
-
-        orderService.getOrderNearby(postData).success(function (response) {
-            $scope.paginationConf.totalItems = response.ordersCount;
-            $scope.orders = response.orders;
-        });
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                postData.centerPoint.longitude = r.point.lng;
+                postData.centerPoint.latitude = r.point.lat;
+                alert('您的位置：'+r.point.lng+','+r.point.lat);
+                orderService.getOrderNearby(postData).success(function (response) {
+                    $scope.paginationConf.totalItems = response.ordersCount;
+                    $scope.orders = response.orders;
+                });
+            }
+            else {
+                alert('failed'+this.getStatus());
+            }
+        },{enableHighAccuracy: true})
     };
     $scope.reload = function(){
         $scope.getOrderNearByPage();
